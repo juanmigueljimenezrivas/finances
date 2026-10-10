@@ -1,0 +1,23 @@
+{
+  "name": "finanzas-personales",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema integral de control patrimonial personal (FastAPI + React)",
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/setup-backend.mjs",
+    "dev": "concurrently -k -n api,web -c blue,magenta \"node scripts/run-api.mjs\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend",
+    "start": "node scripts/run-api.mjs --prod",
+    "test": "node scripts/run-tests.mjs",
+    "docker:up": "docker compose up --build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

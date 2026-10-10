@@ -1,0 +1,32 @@
+# Fase 1 (local con Docker, SQLite):      docker compose up --build
+# Fase 2 (multiusuario + PostgreSQL):     docker compose --profile prod up --build   (con .env, ver .env.example)
+services:
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/finanzas.db}
+      AUTH_ENABLED: ${AUTH_ENABLED:-false}
+      SECRET_KEY: ${SECRET_KEY:-dev-insecure-change-me}
+      ALLOW_REGISTRATION: ${ALLOW_REGISTRATION:-true}
+    volumes: ["appdata:/data"]
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [api]
+    restart: unless-stopped
+
+  db:
+    profiles: ["prod"]
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: finanzas
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD en .env}
+      POSTGRES_DB: finanzas
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    restart: unless-stopped
+
+volumes:
+  appdata:
+  pgdata:

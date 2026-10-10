@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 224 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 10%;
+    --primary: 217 71% 49%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 16% 94%;
+    --secondary-foreground: 224 30% 15%;
+    --muted: 220 16% 94%;
+    --muted-foreground: 220 9% 40%;
+    --accent: 220 20% 92%;
+    --accent-foreground: 224 30% 10%;
+    --border: 220 14% 90%;
+    --input: 220 14% 86%;
+    --ring: 217 71% 49%;
+    --success: 152 69% 28%;
+    --warning: 32 90% 36%;
+    --danger: 0 72% 46%;
+    /* Categorical series (paleta validada) */
+    --series-1: #2a78d6; --series-2: #eb6834; --series-3: #1baf7a; --series-4: #eda100;
+    --series-5: #e87ba4; --series-6: #008300; --series-7: #4a3aa7; --series-8: #e34948;
+    --grid: #e2e6ee; --axis: #6b7280;
+  }
+  .dark {
+    --background: 228 24% 6%;
+    --foreground: 220 20% 94%;
+    --card: 228 20% 9%;
+    --card-foreground: 220 20% 94%;
+    --primary: 217 78% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 14% 14%;
+    --secondary-foreground: 220 20% 94%;
+    --muted: 228 14% 14%;
+    --muted-foreground: 220 10% 66%;
+    --accent: 228 14% 16%;
+    --accent-foreground: 220 20% 94%;
+    --border: 228 12% 16%;
+    --input: 228 12% 22%;
+    --ring: 217 78% 58%;
+    --success: 152 60% 52%;
+    --warning: 38 92% 58%;
+    --danger: 0 80% 66%;
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500;
+    --series-5: #d55181; --series-6: #008300; --series-7: #9085e9; --series-8: #e66767;
+    --grid: #23262f; --axis: #9aa0ad;
+  }
+  * { @apply border-border; }
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body { @apply bg-background text-foreground antialiased; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+  .tabular { font-variant-numeric: tabular-nums; }
+}
+
+.recharts-cartesian-grid line { stroke: var(--grid); }
+.recharts-text { fill: var(--axis); font-size: 12px; }
+.recharts-tooltip-cursor { stroke: var(--axis); }
